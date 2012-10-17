@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	
+	
+<h:head>
+	<link href="#{facesContext.externalContext.request.contextPath}/style.css" rel="stylesheet" type="text/css" />
+	<title>PagSeguro Web Manager</title>
+</h:head>
+<body>
+	<ui:composition template="/templates/layout.xhtml">
+		<ui:define name="tituloConteudo">
+			<h:outputText value="Extrato" styleClass="cssTextoTitulo" />
+			<p:separator />
+		</ui:define>
+		<ui:define name="conteudo">
+
+		
+			<h:form id="formFiltro">
+			 
+				<h:panelGrid columns="2">
+					<h:outputText id="erro" value="" />
+					<p:message for="erro" styleClass="css-messagem-erro" />
+					<h:outputText id="message" value="" />
+					<p:message for="message" styleClass="css-messagem-sucesso" />
+				</h:panelGrid>
+				
+			
+				<br/>
+				
+				<p:fieldset>
+				<h:panelGrid>
+					<h:outputText value="Extrato da conta de #{beanExtract.selectedUser}" />
+					
+				</h:panelGrid>
+				
+				<h:panelGrid  width="100%">					
+					
+					<p:dataTable id="transactions" var="item" value="#{beanExtract.userExtract.transactionItens}"  paginator="true" rows="10"  paginatorPosition="bottom"
+                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                      rowsPerPageTemplate="5,15,20,50">  
+        				<p:column style="text-align:left;">  
+            				<f:facet name="header">  
+                    			Última Modificação 
+            				</f:facet>
+							<p:commandLink action="#{beanExtract.prepareEdition}" oncomplete="transactionModalPopup.show()" update=":transactionModal"> 
+           						<h:outputText value="#{item.lastEventDate}" />
+           						<f:setPropertyActionListener target="#{beanExtract.changedItem}" value="#{item}" />
+           					</p:commandLink>
+        				</p:column> 
+        				
+        				<p:column>  
+            				<f:facet name="header">  
+                   				Tipo  
+            				</f:facet>
+							<p:commandLink action="#{beanExtract.prepareEdition}" oncomplete="transactionModalPopup.show()" update=":transactionModal"> 
+            					<h:outputText value="#{item.type}" />
+            					<f:setPropertyActionListener target="#{beanExtract.changedItem}" value="#{item}"/>
+           					</p:commandLink>
+
+        				</p:column>  
+  
+        				<p:column>  
+            				<f:facet name="header">  
+                   				De/Para 
+            				</f:facet>  
+							<p:commandLink action="#{beanExtract.prepareEdition}" oncomplete="transactionModalPopup.show()" update=":transactionModal"> 
+            					<h:outputText value="#{item.counterparty.flow}"/>
+            					<f:setPropertyActionListener target="#{beanExtract.changedItem}" value="#{item}"/>
+           					</p:commandLink>
+        				</p:column>  
+  
+        				<p:column>  
+            				<f:facet name="header">  
+                    			Nome 
+            				</f:facet> 
+							<p:commandLink action="#{beanExtract.prepareEdition}" oncomplete="transactionModalPopup.show()" update=":transactionModal"> 
+           						<h:outputText value="#{item.counterparty.name}" />
+           						<f:setPropertyActionListener target="#{beanExtract.changedItem}" value="#{item}"/>
+           					</p:commandLink>
+        				</p:column>
+        				
+        				<p:column>  
+            				<f:facet name="header">  
+                    			Status 
+            				</f:facet>
+							<p:commandLink action="#{beanExtract.prepareEdition}" oncomplete="transactionModalPopup.show()" update=":transactionModal"> 
+           						<h:outputText value="#{item.status}" />
+           						<f:setPropertyActionListener target="#{beanExtract.changedItem}" value="#{item}"/>
+           					</p:commandLink>
+        				</p:column>
+        				
+        				<p:column>  
+            				<f:facet name="header">  
+                    			Valor 
+            				</f:facet>
+							<p:commandLink action="#{beanExtract.prepareEdition}" oncomplete="transactionModalPopup.show()" update=":transactionModal"> 
+           						<h:outputText value="#{item.amount}" />
+           						<f:setPropertyActionListener target="#{beanExtract.changedItem}" value="#{item}"/>
+           					</p:commandLink>
+        				</p:column>
+        				
+        				<p:column id="modelHeader" style="text-align:left;">  
+            				<f:facet name="header">  
+                   		 		Data de Criação  
+            				</f:facet> 
+							<p:commandLink action="#{beanExtract.prepareEdition}" oncomplete="transactionModalPopup.show()" update=":transactionModal"> 
+            					<h:outputText value="#{item.date}" />
+            					<f:setPropertyActionListener target="#{beanExtract.changedItem}" value="#{item}"/>
+           					</p:commandLink>
+        				</p:column>
+        				   
+        				  
+    				</p:dataTable>  
+							
+				  <p:commandButton value="Recarregar" actionListener="#{beanExtract.getExtract()}" render="@form" ajax="false"/>	
+				
+				</h:panelGrid>
+				<br/>
+				
+				<h:panelGrid columns="2">
+				
+				
+				</h:panelGrid>
+			
+			
+				
+				
+			 </p:fieldset>
+			</h:form>
+			
+			
+			<p:dialog id="transactionModal" header="Edição de Transação" widgetVar="transactionModalPopup" modal="true">  
+   				<h:form id="transactionEdit">
+   					<h:panelGrid columns="2">
+   						<h:outputText value="Data de criação:" />
+   							<p:calendar value="#{beanExtract.showedItem.date}" mode="inline"/>
+   						
+   						<h:outputText value="Última modificação:" />
+   							<h:outputText value="#{beanExtract.showedItem.lastEventDate}"/>
+   							
+   						<h:outputText value="Código:" />
+   							<p:inputText value="#{beanExtract.showedItem.code}" />
+   					
+   					
+   						<h:outputText value="Tipo:" />
+   							<p:inputText value="#{beanExtract.showedItem.type}" />
+   							
+   					
+   						<h:outputText value="Status:" />
+   							<p:selectOneMenu value="#{beanExtract.showedItem.status}" style="width:150px">  
+            					<f:selectItem itemLabel="INITIAL" itemValue="INITIAL" />  
+            					<f:selectItem itemLabel="WAITING_PAYMENT" itemValue="WAITING_PAYMENT" />  
+           						<f:selectItem itemLabel="ANALISYS" itemValue="ANALISYS" />
+           						<f:selectItem itemLabel="CANCELLED" itemValue="CANCELLED" />
+           						<f:selectItem itemLabel="PAID" itemValue="PAID" />
+           						<f:selectItem itemLabel="DISPUTE" itemValue="DISPUTE" />
+           						<f:selectItem itemLabel="REFUNDED" itemValue="REFUNDED" />  
+           						<f:selectItem itemLabel="AVAILABLE" itemValue="AVAILABLE" />  
+           						  
+        					</p:selectOneMenu> 
+   					
+   						<h:outputText value="De/Para:" />
+   							<p:selectOneMenu value="#{beanExtract.showedItem.counterparty.flow}" style="width:150px">  
+            					<f:selectItem itemLabel="FROM" itemValue="FROM" />  
+            					<f:selectItem itemLabel="TO" itemValue="TO" />  
+           					</p:selectOneMenu> 
+   					
+   						<h:outputText value="Nome" />
+   							<p:inputText value="#{beanExtract.showedItem.counterparty.name}" />
+   							
+   						<h:outputText value="Valor" />
+   							<p:inputText value="#{beanExtract.showedItem.amount}" />
+   							
+   					</h:panelGrid>
+   					<br/>
+   					<br/>
+   					<h:panelGrid columns="2">
+   						<p:commandButton value="Salvar"  render="formCadastro" ajax="false" action="#{beanExtract.commitChanges}" oncomplete="transactionModalPopup.hide()"/>
+						<p:commandButton value="Fechar"  render="formCadastro" ajax="false" actionListener="#{beanExtract.cancelEdit}" oncomplete="transactionModalPopup.hide()"/>	
+					</h:panelGrid>
+   					
+   					
+   					
+   				</h:form>   				  
+			</p:dialog>
+			
+			
+			
+			
+						
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

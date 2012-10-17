@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	
+	
+<h:head>
+	<link href="#{facesContext.externalContext.request.contextPath}/style.css" rel="stylesheet" type="text/css" />
+	<title>PagSeguro Web Manager</title>
+</h:head>
+<body>
+	<ui:composition template="/templates/layout.xhtml">
+		<ui:define name="tituloConteudo">
+			<h:outputText value="Saldo" styleClass="cssTextoTitulo" />
+			<p:separator />
+		</ui:define>
+		<ui:define name="conteudo">
+
+		
+			<h:form id="formCadastro">
+			 
+				<h:panelGrid columns="2">
+					<h:outputText id="erro" value="" />
+					<p:message for="erro" styleClass="css-messagem-erro" />
+					<h:outputText id="message" value="" />
+					<p:message for="message" styleClass="css-messagem-sucesso" />
+				</h:panelGrid>
+				
+			
+				<br/>
+				
+				<p:fieldset>
+				<h:panelGrid>
+					<h:outputText value="Resumo da conta de #{beanInitialPage.selectedUser}" />
+					
+				</h:panelGrid>
+				
+				<h:panelGrid columns="2" width="100%">					
+					
+					<h:panelGrid columns="2">
+						<h:outputText value="Disponível: " />
+						<p:inputText value="#{beanInitialPage.usersBalances.balance.available}"/>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<h:outputText value="Verificada " />
+					    <p:selectBooleanCheckbox value="#{beanInitialPage.usersBalances.verified}" /> 
+					</h:panelGrid>
+						
+						
+					<h:panelGrid columns="2">	
+						<h:outputText value="Bloqueado: " />
+						<p:inputText value="#{beanInitialPage.usersBalances.balance.blocked}"/>
+					</h:panelGrid>
+					<h:panelGrid columns="2">	
+						<h:outputText value="Tipo " />
+						<p:selectOneMenu value="#{beanInitialPage.usersBalances.type}" style="width:150px">  
+            				<f:selectItem itemLabel="SELLER_ACCOUNT" itemValue="SELLER" />  
+            				<f:selectItem itemLabel="PERSONAL_ACCOUNT" itemValue="PERSONAL" />  
+           					<f:selectItem itemLabel="ENTERPRISE_ACCOUNT" itemValue="ENTERPRISE" />  
+        				</p:selectOneMenu> 
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2">	
+						<h:outputText value="A Receber: " />
+						<p:inputText value="#{beanInitialPage.usersBalances.balance.pendent}"/>					
+					</h:panelGrid>	
+					
+					
+				</h:panelGrid>
+				<br/>
+				
+				<h:panelGrid columns="2">
+				
+					
+					<p:commandButton value="Salvar" action="#{beanInitialPage.saveAlterations}" render="@form" ajax="false"/>
+					<p:commandButton value="Recarregar" action="#{beanInitialPage.reloadInformations}" render="@form" ajax="false"/>	
+				
+				</h:panelGrid>
+			
+			
+				
+				
+			 </p:fieldset>
+			</h:form>
+						
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
