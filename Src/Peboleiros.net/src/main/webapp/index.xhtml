@@ -8,17 +8,13 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<link
-		href="#{facesContext.externalContext.request.contextPath}/style.css"
+		href="#{facesContext.externalContext.request.contextPath}/css/style.css"
 		rel="stylesheet" type="text/css" />
-	<title>PagSeguro Web Manager</title>
+	<title>Peboleiros.net</title>
 </h:head>
 <body bgcolor="#E0E0E0">
 
-<f:metadata>
-  <f:event type="preRenderView" listener="#{beanInitialPage.loadUsers()}"/>
-</f:metadata>
-
-	<table align="center" width="1000px" style="height: 500px"
+	<table align="center" width="1000px"  
 		cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
 		<tr class="css-cabecalho">
 			<td>
@@ -26,31 +22,15 @@
 					<tr>
 						<td
 							style="vertical-align: middle; padding-left: 5px; font-size: 32;">
-							<h:graphicImage url="/images/logo.png" style="padding-left: 5px;"/>
+							<h:graphicImage url="" style="padding-left: 5px;"/>
 						</td>
 					</tr>
 				</table>
 			</td>
 		</tr>
-
-		<tr>
-			<td><p:toolbar>
-					<p:toolbarGroup align="left">
-						<h:form>
-							<table>
-								<tr valign="middle">
-									<td
-										style="padding-right: 2px; padding-top: 13px; padding-bottom: 15px;">
-										<!--ícone de localização atual -->
-									</td>
-								</tr>
-							</table>
-						</h:form>
-					</p:toolbarGroup>
-				</p:toolbar></td>
-		</tr>
-		<tr align="center">
-			<td align="center" valign="middle" width="100%" height="100%"
+		
+		<tr align="center" >
+			<td align="center" valign="middle" width="100%" height="400px"
 				style="vertical-align: middle;"><h:form id="fLogin">
 					<p:panel style="width: 350px;">
 						<div>
@@ -62,10 +42,8 @@
 						<h:panelGrid columns="3">
 							<h:outputText id="labelUser" value="Usuário"
 								styleClass="label-class" />
-							<p:selectOneMenu id="user" value="#{beanInitialPage.selectedUser}" style="width:200px">
-								<f:selectItems value="#{beanInitialPage.usersCombo}" />
-							</p:selectOneMenu>
-							<p:message for="user" styleClass="css-messagem-erro" />
+							
+							
 
 
 
@@ -73,7 +51,7 @@
 						<br />
 
 						<t:div styleClass="align-center">
-							<p:commandButton value="Entrar" action="#{beanInitialPage.getUserInformations}" ajax="false"/>
+							<p:commandButton value="Entrar" ajax="false"/>
 
 						</t:div>
 						<br />
