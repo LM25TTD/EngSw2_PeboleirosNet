@@ -20,8 +20,8 @@
 			<td>
 				<table cellpadding="0" cellspacing="0">
 					<tr>
-						<td
-							style="vertical-align: middle; padding-left: 5px; font-size: 32;">
+						<td style="vertical-align: middle; padding-left: 5px; font-size: 32;">
+							"INSERIR CONTEUDO NO CABECALHO" 
 							<h:graphicImage url="" style="padding-left: 5px;"/>
 						</td>
 					</tr>
@@ -32,29 +32,76 @@
 		<tr align="center" >
 			<td align="center" valign="middle" width="100%" height="400px"
 				style="vertical-align: middle;"><h:form id="fLogin">
-					<p:panel style="width: 350px;">
+					<p:panel style="width: 700px;">
 						<div>
-							<h:outputText value="Selecione um usuário abaixo"
-								styleClass="css-biglabel" />
+							<h:outputText value="Bem-Vindo ao Peboleiros.net"
+								styleClass="css-welcome-message" />
 						</div>
 						<br />
 
-						<h:panelGrid columns="3">
-							<h:outputText id="labelUser" value="Usuário"
+						<h:panelGrid width="600px" columns="2">
+							<h:panelGrid width="180px">
+								<h:outputText id="labelUser" value="Visitante, informe seu nome:"
 								styleClass="label-class" />
-							
-							
-
-
-
+							</h:panelGrid>
+							<h:panelGrid width="180px">
+								<p:inputText id="nomeVisitante" size="60" />
+							</h:panelGrid>	
 						</h:panelGrid>
-						<br />
-
-						<t:div styleClass="align-center">
-							<p:commandButton value="Entrar" ajax="false"/>
-
-						</t:div>
-						<br />
+						
+						<h:panelGrid columns="2" width="500px" >
+							<h:panelGrid columns="2" width="100px" />								
+							<p:commandButton value="Entrar" ajax="false" />
+						</h:panelGrid>
+						
+						<br/>
+					
+						
+						<h:panelGrid columns="3" width="500px" >							
+							<h:panelGrid width="200px" >	
+								<p:separator/>
+							</h:panelGrid>
+							<h:outputText value="OU" styleClass="label-ou-class" />
+							<h:panelGrid width="200px" >	
+								<p:separator/>
+							</h:panelGrid>						
+						</h:panelGrid>
+						
+						<br/>
+					
+						
+						<h:panelGrid width="600px" columns="3">
+							<h:panelGrid width="180px">
+								<h:outputText id="labelLogin" value="Membro, informe seu login:"
+								styleClass="label-class" />
+							</h:panelGrid>							
+							<h:panelGrid>
+								<p:inputText id="login" size="40" />
+							</h:panelGrid>
+							<h:panelGrid columns="2">
+								<p:selectBooleanCheckbox />
+								<h:outputText value="Manter logado?"
+								styleClass="checkbox-class" />
+							</h:panelGrid>
+							
+						</h:panelGrid>
+						
+						<h:panelGrid width="600px" columns="3">
+							<h:panelGrid width="180px">
+								<h:outputText id="labelSenha" value="Senha:"
+								styleClass="label-class" />
+							</h:panelGrid>
+							<h:panelGrid>
+								<p:password id="senha" size="40" />
+							</h:panelGrid>
+							<p:commandLink value="Esqueceu sua senha?" styleClass="checkbox-class" />
+						</h:panelGrid>		
+											
+						<h:panelGrid columns="2" width="500px" >
+							<h:panelGrid columns="2" width="100px" />								
+							<p:commandButton value="Logar" ajax="false" />
+						</h:panelGrid>
+						
 						<br />
 
 
