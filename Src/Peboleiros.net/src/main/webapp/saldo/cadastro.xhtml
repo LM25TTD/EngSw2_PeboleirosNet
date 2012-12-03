@@ -9,7 +9,7 @@
 	
 	
 <h:head>
-	<link href="#{facesContext.externalContext.request.contextPath}/style.css" rel="stylesheet" type="text/css" />
+	<link href="#{facesContext.externalContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
 	<title>PagSeguro Web Manager</title>
 </h:head>
 <body>
@@ -35,7 +35,7 @@
 				
 				<p:fieldset>
 				<h:panelGrid>
-					<h:outputText value="Resumo da conta de #{beanInitialPage.selectedUser}" />
+					<h:outputText value="Resumo da conta de " />
 					
 				</h:panelGrid>
 				
@@ -43,7 +43,7 @@
 					
 					<h:panelGrid columns="2">
 						<h:outputText value="Disponível: " />
-						<p:inputText value="#{beanInitialPage.usersBalances.balance.available}"/>
+						<p:inputText value=""/>
 					</h:panelGrid>
 					<h:panelGrid columns="2">
 						<h:outputText value="Verificada " />
@@ -53,11 +53,11 @@
 						
 					<h:panelGrid columns="2">	
 						<h:outputText value="Bloqueado: " />
-						<p:inputText value="#{beanInitialPage.usersBalances.balance.blocked}"/>
+						<p:inputText value=""/>
 					</h:panelGrid>
 					<h:panelGrid columns="2">	
 						<h:outputText value="Tipo " />
-						<p:selectOneMenu value="#{beanInitialPage.usersBalances.type}" style="width:150px">  
+						<p:selectOneMenu value="" style="width:150px">  
             				<f:selectItem itemLabel="SELLER_ACCOUNT" itemValue="SELLER" />  
             				<f:selectItem itemLabel="PERSONAL_ACCOUNT" itemValue="PERSONAL" />  
            					<f:selectItem itemLabel="ENTERPRISE_ACCOUNT" itemValue="ENTERPRISE" />  
@@ -66,7 +66,7 @@
 					
 					<h:panelGrid columns="2">	
 						<h:outputText value="A Receber: " />
-						<p:inputText value="#{beanInitialPage.usersBalances.balance.pendent}"/>					
+						<p:inputText value=""/>					
 					</h:panelGrid>	
 					
 					
@@ -76,8 +76,8 @@
 				<h:panelGrid columns="2">
 				
 					
-					<p:commandButton value="Salvar" action="#{beanInitialPage.saveAlterations}" render="@form" ajax="false"/>
-					<p:commandButton value="Recarregar" action="#{beanInitialPage.reloadInformations}" render="@form" ajax="false"/>	
+					<p:commandButton value="Salvar"  render="@form" ajax="false"/>
+					<p:commandButton value="Recarregar"  render="@form" ajax="false"/>	
 				
 				</h:panelGrid>
 			
