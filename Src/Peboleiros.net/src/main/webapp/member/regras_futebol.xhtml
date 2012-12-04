@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	
+	
+<h:head>
+	<link href="#{facesContext.externalContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
+	<title>Peboleiros.net</title>
+</h:head>
+<body>
+	<ui:composition template="/member/layout.xhtml">		
+		<ui:define name="conteudo">		
+			<h:form id="formHome">
+			<table width="100%" cellpadding="0" cellspacing="0">
+				<tr valign="top">
+					<td width="200" >
+						<div style="width: 98%; padding-top: 0; padding-bottom: 10px;">
+							<h:outputText value="Itens" styleClass="css-titulo" />
+							<p:separator />
+							<p:panelMenu  >
+								<p:submenu label="Regras básicas" >  
+            						<p:menuitem value="Pênalti"  icon="ui-icon-document"  />  
+            						<p:menuitem value="Impedimento" icon="ui-icon-document" />
+            						<p:menuitem value="Escanteio" icon="ui-icon-document" /> 
+            						<p:menuitem value="Lateral" icon="ui-icon-document" /> 
+            						<p:menuitem value="Tiro de Meio" icon="ui-icon-document" /> 
+            						<p:menuitem value="Recuo de Bola" icon="ui-icon-document" />
+            						<p:menuitem value="Lado de Campo" icon="ui-icon-document" />  
+            						  
+        						</p:submenu> 
+        					</p:panelMenu>
+							
+							
+										
+								
+						</div>
+					</td>
+						
+					<td width="600">
+						<h:outputText value="Descrição da Regra" styleClass="css-titulo" />
+						<p:separator />
+				
+						<p:fieldset>
+							<h:outputText value="Impedimento" styleClass="css-titulo" />
+							<br/>
+							<br/>
+							<h:outputText styleClass="css-label"> É uma das regras mais complexas do futebol, porque envolve tanto o conceito de 
+							posicionamento em campo quanto a capacidade de avaliação por parte do árbitro da influência que um jogador pode exercer 
+							em um lance. Aliado ao fato de que muitas vezes os fatores objetivos desta regra envolvem centímetros e frações de segundo, 
+							tudo contribui para tornar o assunto um dos mais polêmicos deste esporte.
+							A regra tem seus aspectos básicos previstos na lei número 11 das leis do futebol. No entanto, como acontece com as outras
+							regras do jogo, sua aplicação depende do conhecimento das práticas de arbitragem que se foram construindo ao longo da história
+							 deste esporte, numa espécie de "jurisprudência". </h:outputText>
+							<br/>
+							<br/>
+							<h:panelGrid width="100%" style="text-align:center">
+								<p:media value="http://www.youtube.com/v/tbL7EsWrhJ8" width="420" height="315" player="flash"/>   						
+   							</h:panelGrid>			
+						</p:fieldset>						
+					</td>
+			 	</tr>
+			</table>
+			</h:form>						
+		</ui:define>
+	</ui:composition>
+	
+	
+	
+	
+</body>
+</html>

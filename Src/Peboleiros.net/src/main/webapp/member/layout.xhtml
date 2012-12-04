@@ -34,9 +34,9 @@
 										cellpadding="0" cellspacing="">
 										<tr style="vertical-align: bottom; height: 100%;">
 											<td align="right"><span
-												class="css-texto-cabecalho-bem-vindo">Olá visitante
-													bem-vindo!</span> <p:commandLink value=" Cadastre-se aqui"
-													styleClass="css-texto-cabecalho-bem-vindo" onclick="cadastroModal.show();return false;" /></td>
+												class="css-texto-cabecalho-bem-vindo">Olá Leandro
+													bem-vindo!</span> <p:commandLink value=" Atualizar meus dados"
+													styleClass="css-link" action="/member/meus_dados.xhtml" /></td>
 										</tr>
 									</table>
 								</h:form></td>
@@ -48,10 +48,12 @@
 		</ui:insert>
 		<tr>
 			<td><p:menubar>
-					<p:menuitem value="Home" url="" icon="ui-icon-home" />
-					<p:menuitem value="Regras de Futebol" url=""
-						icon="ui-icon-document" />
+					<p:menuitem value="Home" url="/member/home.xhtml" icon="ui-icon-home" />
+					<p:menuitem value="Regras de Futebol" url="/member/regras_futebol.xhtml" icon="ui-icon-document" />
+					<p:menuitem value="Minhas partidas" url="" icon="ui-icon-document" />
+					<p:menuitem value="Minhas enquetes" url="" icon="ui-icon-document" />	
 					<p:menuitem value="Ajuda" url="" icon="ui-icon-help" />
+					<p:menuitem value="Sair" url="/index.xhtml" icon="ui-icon-close" />
 				</p:menubar></td>
 		</tr>
 		<tr valign="top" style="vertical-align: center;">
