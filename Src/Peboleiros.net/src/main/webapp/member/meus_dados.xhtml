@@ -31,34 +31,41 @@
 							</h:panelGrid>
 							<p:separator/>
 							<p:fieldset>
+								<h:panelGrid width="100%" style="text-align:center">
+									<p:graphicImage value="/images/perfil.jpg" />
+									<p:commandLink value="Mudar Foto" styleClass="checkbox-class"/>
+								</h:panelGrid>
+								
+								<br/>
+								<br/>
 								<h:panelGrid width="100%" columns="2">
 									<h:outputText value="Nome Completo: *" styleClass="css-label"/>
-									<p:inputText size="60"/>
+									<p:inputText value="Leandro Mauricio Araujo Bentes" size="60"/>
 									<h:outputText value="Sexo: " styleClass="css-label"/>
-									<p:selectOneRadio id="sexo" >  
+									<p:selectOneRadio id="sexo" value="1" >  
             							<f:selectItem itemLabel="Masculino" itemValue="1"/>  
             							<f:selectItem itemLabel="Feminino" itemValue="2"  />  
             						</p:selectOneRadio>
             						<h:outputText value="Data de Nascimento: " styleClass="css-label"/>
-            						<p:calendar id="calendar" showOn="button" pattern="dd/MM/yyyy" /> 
+            						<p:calendar  id="calendar" showOn="button" pattern="dd/MM/yyyy" /> 
             						<h:outputText value="Estado onde mora: " styleClass="css-label"/>
             						<p:selectOneMenu>  
-            							<f:selectItem itemLabel="Amazonas" itemValue="" />  
-            							<f:selectItem itemLabel="Pará" itemValue="1" />  
+            							<f:selectItem itemLabel="Amazonas" itemValue="1" />  
+            							<f:selectItem itemLabel="Pará" itemValue="2" />  
                    					</p:selectOneMenu>   
             						<h:outputText value="Cidade onde mora: " styleClass="css-label"/> 
             						<p:selectOneMenu>  
-            							<f:selectItem itemLabel="Manaus" itemValue="" />  
-            							<f:selectItem itemLabel="Óbidos" itemValue="1" />  
+            							<f:selectItem itemLabel="Manaus" itemValue="1" />  
+            							<f:selectItem itemLabel="Óbidos" itemValue="2" />  
                    					</p:selectOneMenu>
                    					<h:outputText value="Apelido: " styleClass="css-label"/>
-                   					<p:inputText size="20"/>
+                   					<p:inputText value="Leandro" size="20"/>
                    					<h:outputText value="Telefone: " styleClass="css-label"/>
                    					<h:panelGrid columns="4">
                    						<h:outputText value="DDD" styleClass="css-label"/>
-                   						<p:inputText size="5"/>
+                   						<p:inputText value="92" size="5"/>
                    						<h:outputText value="Número" styleClass="css-label"/>
-                   						<p:inputText size="10"/>
+                   						<p:inputText value="3633-3333" size="10"/>
                    					</h:panelGrid>                   					   
 								</h:panelGrid>
 							</p:fieldset>
