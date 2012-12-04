@@ -80,10 +80,7 @@
 								<h:outputText value="Mural de Recados" styleClass="css-titulo" />
 								<p:separator />
 
-								<p:panel style="text-align:center;width:190px;">
-									<p:commandLink value="Enviar um recado" styleClass="css-link"
-										onclick="recadoModal.show(); return false;" />
-								</p:panel>
+								
 								<p:scrollPanel
 									style="border:0; width:195px;height:250px;padding-bottom: 10px;">
 									<p:dataGrid var="mensagem"
@@ -100,6 +97,10 @@
 										</p:panel>
 									</p:dataGrid>
 								</p:scrollPanel>
+								<h:panelGrid style="text-align:center;width:190px;">
+									<p:button value="Enviar um recado"
+										onclick="recadoModal.show(); return false;" />
+								</h:panelGrid>
 
 								
 								<br/>
