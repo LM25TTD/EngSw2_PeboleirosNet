@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	
+	
+<h:head>
+	<link href="#{facesContext.externalContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
+	<title>Peboleiros.net</title>
+</h:head>
+<body>
+	<ui:composition template="/templates/layout.xhtml">		
+		<ui:define name="conteudo">		
+			<h:form id="formHome">
+			<table width="100%" cellpadding="0" cellspacing="0">
+				<tr valign="top">
+					<td width="200" >
+						<div style="width: 98%; padding-top: 0; padding-bottom: 10px;">
+							<h:outputText value="Fotos" styleClass="css-titulo" />
+							<p:separator />
+							
+							
+							<p:galleria value="#{galeriaMockBean.images}" var="image" panelWidth="195" panelHeight="200" >  
+    							<p:graphicImage value="/images/galeria/#{image}" />  
+							</p:galleria>
+							
+							<br/>
+
+							<h:outputText value="Vídeos" styleClass="css-titulo" />
+							<p:separator />
+							<h:panelGrid width="100%" columns="2">
+								<p:media value="http://www.youtube.com/v/A8ZaWb677kY" width="100" height="85" player="flash"/>
+								<p:media value="http://www.youtube.com/v/qWybPgF0OvU" width="100" height="85" player="flash"/>
+								<p:media value="http://www.youtube.com/v/9jzlc4KVlw0" width="100" height="85" player="flash"/>
+								<p:media value="http://www.youtube.com/v/KZnUr8lcqjo" width="100" height="85" player="flash"/>							
+							</h:panelGrid>
+							
+								
+						</div>
+					</td>
+						
+					<td width="600">
+						<h:outputText value="Últimas Partidas" styleClass="css-titulo" />
+						<p:separator />
+				
+						<p:fieldset>
+							<p:dataTable id="cars" var="partida" value="#{muralMockBean.partidas}" rowKey="#{partida.nomePartida}"  
+                 				selection="#{muralMockBean.partidaSelecionada}" selectionMode="single">  
+        						<p:column headerText="Partida">  
+            						#{partida.nomePartida}
+        						</p:column>  
+        						<p:column headerText="Resultado">  
+            						#{partida.resultado}
+        						</p:column>  
+        						<p:column headerText="Local" >  
+            						#{partida.local} 
+        						</p:column>   
+       							<f:facet name="footer">  
+           							<p:button id="viewButton" value="Visualizar" icon="ui-icon-search"  
+                    					onclick="partidaDialog.show(); return false;"/>  
+        						</f:facet>  
+    						</p:dataTable>
+    						
+    						<p:dialog id="partidaDetalhe" header="Detalhes da Partida" widgetVar="partidaDialog" resizable="false"  
+               showEffect="clip" hideEffect="fold" modal="true">  
+  
+        <h:panelGrid id="display" columns="2" cellpadding="4">  
+  
+            <f:facet name="header">  
+                <p:graphicImage value="/images/galeria/foto1.jpg"/>  
+            </f:facet>  
+  
+            <h:outputText value="Times:" />  
+            <h:outputText value="Japiim x Alvorada" />  
+  
+            <h:outputText value="Resultado:" />  
+            <h:outputText value="2 x 1" />  
+  
+            <h:outputText value="Local:" />  
+            <h:outputText value="Planeta Bola" />  
+  
+            <h:outputText value="Autores dos Gols:" />  
+            <h:outputText value="Japiim: Paulinho, Ronaldo / Alvorada: Kléber" />
+            
+            <h:outputText value="Cartões Amarelos:" />  
+            <h:outputText value="Japiim: 1 / Alvorada: 2" />
+                        
+            <h:outputText value="Cartões Vermelhos:" />  
+            <h:outputText value="Japiim: 0 / Alvorada: 0" />
+            
+              
+        </h:panelGrid>
+        
+        <h:panelGrid width="100%" style="text-align:center;" >
+        	<p:button onclick="partidaDialog.hide()" value="Ok" />
+        </h:panelGrid>  
+    </p:dialog>  
+    														
+						</p:fieldset>						
+					</td>
+			 	</tr>
+			</table>
+			</h:form>						
+		</ui:define>
+	</ui:composition>
+	
+	
+	
+	
+</body>
+</html>

@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import net.peboleiros.mockentitys.MensagemMural;
+import net.peboleiros.mockentitys.Partida;
 
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
@@ -20,16 +21,18 @@ public class MuralMockBean implements Serializable {
 
 	public MuralMockBean(){
 		
-		MensagemMural mensagemUm = new MensagemMural(1, "Cara o Gildo È muito ruim!", "Paulinho","paulo@gmail.com", new GregorianCalendar(2012,GregorianCalendar.DECEMBER,2,15,22,14));
-		MensagemMural mensagemDois = new MensagemMural(2, "queria ver se alguÈm È melhor que eu!", "Fenomeno","chicao@gmail.com", new GregorianCalendar(2012,GregorianCalendar.DECEMBER,3,9,20,11));
-		MensagemMural mensagemTres = new MensagemMural(3, "visite meu ·lbum bit.ly/a2sa2", "Pepe","pepe@gmail.com", new GregorianCalendar(2012,GregorianCalendar.NOVEMBER,21,11,22,13));
+		
+		MensagemMural mensagemUm = new MensagemMural(1, "Cara o Gildo √© muito ruim!", "Paulinho","paulo@gmail.com", new GregorianCalendar(2012,GregorianCalendar.DECEMBER,2,15,22,14));
+		MensagemMural mensagemDois = new MensagemMural(2, "queria ver se algu√©m √© melhor que eu!", "Fenomeno","chicao@gmail.com", new GregorianCalendar(2012,GregorianCalendar.DECEMBER,3,9,20,11));
+		MensagemMural mensagemTres = new MensagemMural(3, "visite meu √°lbum bit.ly/a2sa2", "Pepe","pepe@gmail.com", new GregorianCalendar(2012,GregorianCalendar.NOVEMBER,21,11,22,13));
 		MensagemMural mensagemQuatro = new MensagemMural(4, "muito legal! convidarei meus amigos", "Rapha","r10@gmail.com", new GregorianCalendar(2012,GregorianCalendar.OCTOBER,4,15,22,14));
-		MensagemMural mensagemCinco = new MensagemMural(5, "enviando um abraÁo pra galera de Mapinguari", "Roger","caxias@hotmail.com", new GregorianCalendar(2012,GregorianCalendar.NOVEMBER,9,15,22,14));
-		MensagemMural mensagemSeis = new MensagemMural(6, "È noixx!", "Joca Rox","joqua@hotmail.com", new GregorianCalendar(2012,GregorianCalendar.DECEMBER,02,15,22,14));
+		MensagemMural mensagemCinco = new MensagemMural(5, "enviando um abra√ßo pra galera de Mapinguari", "Roger","caxias@hotmail.com", new GregorianCalendar(2012,GregorianCalendar.NOVEMBER,9,15,22,14));
+		MensagemMural mensagemSeis = new MensagemMural(6, "√© noixx!", "Joca Rox","joqua@hotmail.com", new GregorianCalendar(2012,GregorianCalendar.DECEMBER,02,15,22,14));
 		MensagemMural mensagemSete = new MensagemMural(7, "vamos vamos!", "Cobra Cega","jonatas@gmail.com", new GregorianCalendar(2012,GregorianCalendar.DECEMBER,02,15,22,14));
 		MensagemMural mensagemOito = new MensagemMural(8, "ei cara, me diz uma coisa...", "John","john.paul@uol.com", new GregorianCalendar(2012,GregorianCalendar.DECEMBER,02,15,22,14));
-		MensagemMural mensagemNove = new MensagemMural(9, "n„o vÈio, na real vocÍ...", "Gordito","eder@gmail.com", new GregorianCalendar(2012,GregorianCalendar.DECEMBER,02,15,22,14));
-		MensagemMural mensagemDez = new MensagemMural(10, "fala galerinha, vcs est„o sendos testados", "Alvaro","alvaro@gmail.com", new GregorianCalendar(2012,GregorianCalendar.DECEMBER,02,15,22,14));
+		MensagemMural mensagemNove = new MensagemMural(9, "n√£o v√©io, na real voc√™...", "Gordito","eder@gmail.com", new GregorianCalendar(2012,GregorianCalendar.DECEMBER,02,15,22,14));
+		MensagemMural mensagemDez = new MensagemMural(10, "fala galerinha, vcs est√£o sendos testados", "Alvaro","alvaro@gmail.com", new GregorianCalendar(2012,GregorianCalendar.DECEMBER,02,15,22,14));
+		
 		
 		recadosMural.add(mensagemUm);
 		recadosMural.add(mensagemDois);
@@ -48,18 +51,31 @@ public class MuralMockBean implements Serializable {
 		
 		results.setLabel("Resultado");
 		results.set("Fluminense", 52);
-		results.set("AtlÈtico-MG", 52);
-		results.set("S„o Paulo", 52);
+		results.set("Atl√©tico-MG", 52);
+		results.set("S√£o Paulo", 52);
 		results.set("Corinthians", 52);
 		
-				
+		partidas.add(new Partida("Japiim x Alvorada", "2 x 1", "Planeta Bola"));		
+		partidas.add(new Partida("Uni√£o x Peb√≥ides", "1 x 3", "3B Soccer"));
+		partidas.add(new Partida("Bar√ßa x Chelsear", "3 x 3", "Planet Soccer"));
+		partidas.add(new Partida("OVNI x Capinzal", "2 x 0", "Planeta Bola"));
+		
 		
 	}
 	
 	private List<MensagemMural> recadosMural = new ArrayList<MensagemMural>(10);
+	private List<Partida> partidas = new ArrayList<Partida>(10);
 	private CartesianChartModel timesResult; 
+	private Partida partidaSelecionada;
 	
-	
+		
+	public Partida getPartidaSelecionada() {
+		return partidaSelecionada;
+	}
+
+	public void setPartidaSelecionada(Partida partidaSelecionada) {
+		this.partidaSelecionada = partidaSelecionada;
+	}
 
 	public CartesianChartModel getTimesResult() {
 		return timesResult;
@@ -75,6 +91,14 @@ public class MuralMockBean implements Serializable {
 
 	public void setRecadosMural(List<MensagemMural> recadosMural) {
 		this.recadosMural = recadosMural;
+	}
+
+	public List<Partida> getPartidas() {
+		return partidas;
+	}
+
+	public void setPartidas(List<Partida> partidas) {
+		this.partidas = partidas;
 	}
 	
 	

@@ -1,10 +1,17 @@
 package net.peboleiros.mockentitys;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 
-public class MensagemMural {
+public class MensagemMural implements Serializable{
+	
+	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9019084537584447768L;
 	private Integer idRecado;
 	private String mensagem;
 	private String nomeAutor;
