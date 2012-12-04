@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+
+<h:head>
+	<link
+		href="#{facesContext.externalContext.request.contextPath}/css/style.css"
+		rel="stylesheet" type="text/css" />
+	<title>Peboleiros.net</title>
+</h:head>
+<body>
+	<ui:composition template="/member/layout.xhtml">
+		<ui:define name="conteudo">
+			<h:form id="formHome">
+				<table width="100%" cellpadding="0" cellspacing="0">
+					<tr valign="top">
+
+						<td width="800"><h:outputText value="Minhas Partidas"
+								styleClass="css-titulo" /> <p:separator /> <p:tabView
+								orientation="left">
+								<p:tab title="Em aberto">
+									<h:panelGrid columns="3" cellspacing="5">
+										<h:outputText value="Local:" styleClass="css-label" />
+										<p:inputText size="40" value="busca por local" />
+										<p:button value="Buscar" icon="ui-icon-search" />
+									</h:panelGrid>
+
+									<br />
+
+									<p:dataTable id="cars" var="partida"
+										value="#{muralMockBean.partidas}"
+										rowKey="#{partida.nomePartida}"
+										selection="#{muralMockBean.partidaSelecionada}"
+										selectionMode="single">
+										<p:column headerText="Partida">  
+            						#{partida.nomePartida}
+        						</p:column>
+										<p:column headerText="Resultado">  
+            						#{partida.resultado}
+        						</p:column>
+										<p:column headerText="Local">  
+            						#{partida.local} 
+        						</p:column>
+										<f:facet name="footer">
+											<p:button id="viewButton" value="Visualizar"
+												icon="ui-icon-search"
+												onclick="partidaDialog.show(); return false;" />
+										</f:facet>
+									</p:dataTable>
+
+									<p:dialog id="partidaDetalhe" header="Detalhes da Partida" width="670" appendToBody="true"
+										widgetVar="partidaDialog" resizable="false" showEffect="clip"
+										modal="true">
+										<p:tabView orientation="top">
+											<p:tab title="Dados da Partida">
+
+												<h:panelGrid width="600px" style="text-align:center">
+													<p:galleria value="#{galeriaMockBean.imagesPartida}"
+														var="image" panelWidth="600">
+														<p:graphicImage value="/images/galeria/#{image}" />
+													</p:galleria>
+
+												</h:panelGrid>
+
+
+												<p:fieldset>
+													<h:panelGrid id="display" columns="2" cellpadding="4">
+
+														<h:outputText value="Times:" />
+														<h:outputText value="Japiim x Alvorada" />
+
+														<h:outputText value="Resultado:" />
+														<h:outputText value="2 x 1" />
+
+														<h:outputText value="Local:" />
+														<h:outputText value="Planeta Bola" />
+
+														<h:outputText value="Data:" />
+														<h:outputText value="15/11/2012" />
+
+														<h:outputText value="Horário:" />
+														<h:outputText value="Das 15:00 às 17:00" />
+
+
+														<h:outputText value="Autores dos Gols:" />
+														<h:outputText
+															value="Japiim: Paulinho, Ronaldo / Alvorada: Kléber" />
+
+														<h:outputText value="Cartões Amarelos:" />
+														<h:outputText value="Japiim: 1 / Alvorada: 2" />
+
+														<h:outputText value="Cartões Vermelhos:" />
+														<h:outputText value="Japiim: 0 / Alvorada: 0" />
+
+
+													</h:panelGrid>
+
+													<h:panelGrid width="100%" style="text-align:center;">
+														<p:button onclick="partidaDialog.hide()" value="Ok" />
+													</h:panelGrid>
+
+												</p:fieldset>
+											</p:tab>
+											<p:tab title="Comentários">
+
+												<p:panel style="overflow: auto; height: 500px;">
+													<p:dataGrid var="mensagem"
+														value="#{muralMockBean.recadosMural}" columns="1">
+														<p:panel style="text-align:center">
+															<h:panelGrid columns="1" style="width:100%">
+																<h:outputText value="#{mensagem.nomeAutor} disse:"
+																	styleClass="css-label" />
+															</h:panelGrid>
+															<h:panelGrid columns="1" style="width:100%">
+																<h:outputText value="#{mensagem.mensagem}" />
+															</h:panelGrid>
+
+														</p:panel>
+													</p:dataGrid>
+												</p:panel>
+												<br/> 
+												<h:panelGrid style="text-align:center;width:600px;">
+													<p:button value="Enviar um recado"
+														onclick="comentarioPartidaModal.show(); return false;" />
+												</h:panelGrid>
+
+											</p:tab>
+										</p:tabView>
+									</p:dialog>
+
+								</p:tab>
+								<p:tab title="Finalizadas">
+								</p:tab>
+							</p:tabView></td>
+					</tr>
+				</table>
+			</h:form>
+
+			<p:dialog id="emailAlterId" appendToBody="true"
+				header="Alteração de E-mail" widgetVar="emailAlter" modal="true">
+				<h:form id="formEmail">
+					<h:panelGrid width="100%" cellpadding="5px">
+						<p:inputText value="E-mail atual" size="40" />
+						<p:inputText value="Novo E-mail" size="40" />
+						<p:inputText value="Confirme o novo E-mail" size="40" />
+					</h:panelGrid>
+
+					<h:panelGrid width="100%"
+						style="text-align:center;padding-top:10px;">
+						<p:button value="Alterar"
+							onclick="emailAlterModal.hide(); return false;" />
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog id="senhaAlterId" appendToBody="true"
+				header="Alteração de Senha" widgetVar="senhaAlter" modal="true">
+				<h:form id="formSenha">
+					<h:panelGrid width="100%" columns="2">
+						<h:outputText value="Senha atual" />
+						<p:password size="20" />
+						<h:outputText value="Nova Senha" />
+						<p:password size="20" />
+						<h:outputText value="Confirmar Nova Senha" />
+						<p:password size="20" />
+					</h:panelGrid>
+					<h:panelGrid width="100%"
+						style="text-align:center;padding-top:10px;">
+						<p:button value="Alterar"
+							onclick="senhaAlter.hide(); return false;" />
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog id="comentarioPartidaPartidaId" appendToBody="true"
+				header="Escreva sua mensagem" widgetVar="comentarioPartidaModal" modal="true"
+				width="370">
+				<h:form id="formComentarioPartida">
+					<h:panelGrid width="100%" columns="2" cellpadding="5px">
+						<h:outputText value="Mensagem" styleClass="css-label" />
+						<p:inputTextarea rows="6" cols="40" />
+					</h:panelGrid>
+					<h:panelGrid width="100%"
+						style="text-align:center;padding-top:10px;">
+						<p:button value="Enviar" />
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+
+		</ui:define>
+	</ui:composition>
+
+
+
+
+
+</body>
+</html>
