@@ -38,15 +38,13 @@
 
 								<h:outputText value="Vídeos" styleClass="css-titulo" />
 								<p:separator />
-								<h:panelGrid width="100%" columns="2">
+								<h:panelGrid width="98%" >
 									<p:media value="http://www.youtube.com/v/A8ZaWb677kY"
-										width="100" height="85" player="flash" />
-									<p:media value="http://www.youtube.com/v/qWybPgF0OvU"
-										width="100" height="85" player="flash" />
-									<p:media value="http://www.youtube.com/v/9jzlc4KVlw0"
-										width="100" height="85" player="flash" />
-									<p:media value="http://www.youtube.com/v/KZnUr8lcqjo"
-										width="100" height="85" player="flash" />
+										width="195" height="180" player="flash" style="z-index:8" />									
+								</h:panelGrid>
+								<h:panelGrid width="100%" style="text-align:center">
+									<p:button value="Mais Vídeos"
+										onclick="videosDialog.show(); return false;" />
 								</h:panelGrid>
 
 
@@ -59,21 +57,22 @@
 									value="#{muralMockBean.partidas}"
 									rowKey="#{partida.nomePartida}"
 									selection="#{muralMockBean.partidaSelecionada}"
-									selectionMode="single">
-									<p:column headerText="Partida">  
-            						#{partida.nomePartida}
-        						</p:column>
-									<p:column headerText="Resultado">  
-            						#{partida.resultado}
-        						</p:column>
-									<p:column headerText="Local">  
-            						#{partida.local} 
-        						</p:column>
-									<f:facet name="footer">
-										<p:button id="viewButton" value="Visualizar"
-											icon="ui-icon-search"
+									>
+									<p:column headerText="Partida">
+										<p:commandLink value="#{partida.nomePartida}" styleClass="css-label"
 											onclick="partidaDialog.show(); return false;" />
-									</f:facet>
+									</p:column>
+									<p:column headerText="Resultado">
+										<p:commandLink value="#{partida.resultado}" styleClass="css-label"
+											onclick="partidaDialog.show(); return false;" />
+
+									</p:column>
+									<p:column headerText="Local">
+										<p:commandLink value="#{partida.local}" styleClass="css-label"
+											onclick="partidaDialog.show(); return false;" />
+
+									</p:column>
+
 								</p:dataTable>
 
 								<p:dialog id="partidaDetalhe" header="Detalhes da Partida"
@@ -136,6 +135,16 @@
 										<p:graphicImage id="fotos" value="/images/galeria/#{image}" />
 									</p:galleria>
 									
+								</p:dialog>
+								
+								<p:dialog id="videosId" header="Vídeos"
+									widgetVar="videosDialog" resizable="false" modal="true">									
+										<p:carousel id="videosCarousel" value="#{galeriaMockBean.videos}" var="video" rows="1" circular="true"> 
+											<h:panelGrid columns="1" style="width:700px;height:500px;text-align:center;" cellpadding="5" > 
+												<p:media value="#{video}" width="640" height="480" player="flash" />
+											</h:panelGrid>								
+										</p:carousel>   
+
 								</p:dialog>
 
 							</p:fieldset></td>

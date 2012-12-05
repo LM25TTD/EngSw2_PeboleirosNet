@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+
 import net.peboleiros.mockentitys.MensagemMural;
 import net.peboleiros.mockentitys.Partida;
 
@@ -68,7 +72,12 @@ public class MuralMockBean implements Serializable {
 	private CartesianChartModel timesResult; 
 	private Partida partidaSelecionada;
 	
-		
+	
+	public void confirmarConvite(ActionEvent actionEvent){  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso",  "Sua presença foi confirmada na partida!");  
+        FacesContext.getCurrentInstance().addMessage(null, message);  
+    } 
+	
 	public Partida getPartidaSelecionada() {
 		return partidaSelecionada;
 	}
