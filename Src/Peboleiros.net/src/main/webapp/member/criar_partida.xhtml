@@ -18,298 +18,164 @@
 	<ui:composition template="/member/layout.xhtml">
 		<ui:define name="conteudo">
 			<h:form id="formHome">
+			<p:growl id="growl" life="4000"/>  
 				<table width="100%" cellpadding="0" cellspacing="0">
 					<tr valign="top">
 
-						<td width="800"><h:outputText value="Minhas Partidas"
-								styleClass="css-titulo" /> <p:separator /> <p:tabView
-								orientation="left">
+						<td width="800"><h:outputText value="Criar Partida"
+								styleClass="css-titulo" /> 
+								<p:separator /> 
+								<p:tabView orientation="top" id="tabs">
 								
-								<p:tab title="Em aberto">
-								<h:panelGrid columns="3" cellspacing="5">
-										<h:outputText value="Local:" styleClass="css-label" />
-										<p:inputText size="40" value="busca por local" />
-										<p:button value="Buscar" icon="ui-icon-search" />
-									</h:panelGrid>
-
-									<br />
-
-									<p:dataTable id="partidasAbertas" var="partida"
-										value="#{muralMockBean.partidas}"
-										rowKey="#{partida.nomePartida}"
-										selection="#{muralMockBean.partidaSelecionada}"
-										selectionMode="single">
-										<p:column headerText="Partida">  
-            								<p:commandLink value="#{partida.nomePartida}" onclick="partidaAbertaDialog.show(); return false;" />
-        								</p:column>
-										<p:column headerText="Data e Hora">  
-            								<p:commandLink value="22/12/2012 às 14:00" onclick="partidaAbertaDialog.show(); return false;" />
-            								
-        								</p:column>
-										<p:column headerText="Local">  
-										<p:commandLink value="#{partida.local} " onclick="partidaAbertaDialog.show(); return false;" />
-            						
-        						</p:column>
-										
-									</p:dataTable>
-
-									<p:dialog id="partidaAbertaDetalhe" header="Detalhes da Partida" draggable="true"
-										width="670" height="500" widgetVar="partidaAbertaDialog"
-										resizable="false" showEffect="clip" modal="true">
-										<p:tabView orientation="top">
-											<p:tab title="Dados da Partida">							
-
-
-												<p:fieldset>
-													<h:panelGrid id="display" columns="2" cellpadding="4">
-
-														<h:outputText value="Times:" />
-														<h:outputText value="Japiim x Alvorada" />
-										
-
-														<h:outputText value="Local:" />
-														<h:outputText value="Planeta Bola" />
-
-														<h:outputText value="Data:" />
-														<h:outputText value="22/15/2012" />
-
-														<h:outputText value="Horário:" />
-														<h:outputText value="Das 14:00 às 17:00" />
-
-													</h:panelGrid>
-
-													<h:panelGrid width="100%" style="text-align:center;">
-														<p:button onclick="partidaDialog.hide()" value="Ok" />
-													</h:panelGrid>
-
-												</p:fieldset>
-											</p:tab>
-											<p:tab title="Comentários">
-												<p:panel style="overflow: auto; height: 350px;">
-													<p:dataGrid var="mensagem"
-														value="#{muralMockBean.recadosMural}" columns="1">
-														<p:panel style="text-align:center">
-															<h:panelGrid columns="1" style="width:100%">
-																<h:outputText value="#{mensagem.nomeAutor} disse:"
-																	styleClass="css-label" />
-															</h:panelGrid>
-															<h:panelGrid columns="1" style="width:100%">
-																<h:outputText value="#{mensagem.mensagem}" />
-															</h:panelGrid>
-														</p:panel>
-													</p:dataGrid>
-												</p:panel>
-												<br />
-												<h:panelGrid style="text-align:center;width:600px;">
-													<p:button value="Enviar um recado"
-														onclick="comentarioPartidaModal.show(); return false;" />
-												</h:panelGrid>
-											</p:tab>
+								<p:tab title="1 - Dados da Partida" id="tabDadosGerais" titletip="Insira os dados gerais da sua partida, como local hora e data">					
+									<h:panelGrid  width="100%" columns="2" cellspacing="5"> 
+										<h:outputText value="Nome da Partida: *" styleClass="label-class"/>
+										<p:inputText size="60"/>
+										<h:outputText value="Local: *" styleClass="label-class"/>
+										<p:inputText size="40"/>
+										<h:outputText value="Visibilidade Pública? " styleClass="label-class"/>
+										<p:selectBooleanButton onLabel="Sim" offLabel="Não" onIcon="ui-icon-check" offIcon="ui-icon-close"/>  
+            							<h:outputText value="Data: *" styleClass="label-class"/>
+            							<p:calendar locale="pt_BR" id="data" showOn="button" pattern="dd/MM/yyyy" />
+            							<h:outputText value="Hora de Início: *" styleClass="label-class"/>
+            							<p:calendar locale="pt_BR" id="horaInicio" timeOnly="true" showOn="button" pattern="HH:mm" />
+            							<h:outputText value="Hora de Fim: *" styleClass="label-class"/>
+            							<p:calendar locale="pt_BR" id="horaFim" timeOnly="true" showOn="button" pattern="HH:mm" /> 
+            						</h:panelGrid>	
+            						<br/><br/>
+            										
+								</p:tab>
+								
+								
+								
+								<p:tab title="2 - Membros" id="tabMembros" titletip="Adicione os usuarios que irão receber os convites da partida" >
+									<h:panelGrid width="100%" columns="2">
+										<p:panel header="Primeiro Time">
 											
-										</p:tabView>
-									</p:dialog>
-								<br/>
-								<h:panelGrid width="100%" style="text-align:left;">
-										<p:button value="Criar Partida" href="/index.xhtml" />
-								</h:panelGrid>
-								
-								</p:tab>
-								
-								
-								<p:tab title="Finalizadas">
-									<h:panelGrid columns="3" cellspacing="5">
-										<h:outputText value="Local:" styleClass="css-label" />
-										<p:inputText size="40" value="busca por local" />
-										<p:button value="Buscar" icon="ui-icon-search" />
-									</h:panelGrid>
-
-									<br />
-
-									<p:dataTable id="partidas" var="partida"
-										value="#{muralMockBean.partidas}"
-										rowKey="#{partida.nomePartida}"
-										selection="#{muralMockBean.partidaSelecionada}"
-										selectionMode="single">
-										<p:column headerText="Partida">  
-											<p:commandLink value="#{partida.nomePartida}" onclick="partidaDialog.show(); return false;" />
-            						
-        						</p:column>
-										<p:column headerText="Resultado">  
-										<p:commandLink value="#{partida.resultado}" onclick="partidaDialog.show(); return false;" />
-            						
-        						</p:column>
-										<p:column headerText="Local">  
-										<p:commandLink value="#{partida.local}" onclick="partidaDialog.show(); return false;" />
-            						 
-        						</p:column>
+											<h:panelGrid width="100%" columns="2">
+												<h:outputText value="Nome do time" styleClass="css-label"/>
+												<p:inputText size="40"/>
+											</h:panelGrid>
+											
+											<h:panelGroup>  
+											 <h:panelGrid columns="4" width="100%" cellpadding="4">  
+                								<p:panel id="t1jog1" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel>
+                        						<p:panel id="t1jog2" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel> 
+                        						<p:panel id="t1jog3" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel>
+                        						<p:panel id="t1jog4" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel>    
+                							 </h:panelGrid>
+                							 <h:panelGrid columns="4" width="100%" cellpadding="4">  
+                								<p:panel id="t1jog5" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel>
+                        						<p:panel id="t1jog6" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel> 
+                        						<p:panel id="t1jog7" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel>
+                        						<p:panel id="t1jog8" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel>    
+                							 </h:panelGrid>
+                							 
+                							 
+                							 
+                							  	
+											</h:panelGroup>								
 										
-									</p:dataTable>
-
-									<p:dialog id="partidaDetalhe" header="Detalhes da Partida"
-										width="670" appendToBody="true" widgetVar="partidaDialog"
-										resizable="false" showEffect="clip" modal="true">
-										<p:tabView orientation="top">
-											<p:tab title="Dados da Partida">
-
-												<h:panelGrid width="600px" style="text-align:center">
-													<p:galleria value="#{galeriaMockBean.imagesPartida}"
-														var="image" panelWidth="600">
-														<p:graphicImage value="/images/galeria/#{image}" />
-													</p:galleria>
-
-												</h:panelGrid>
-
-
-												<p:fieldset>
-													<h:panelGrid id="display" columns="2" cellpadding="4">
-
-														<h:outputText value="Times:" />
-														<h:outputText value="Japiim x Alvorada" />
-
-														<h:outputText value="Resultado:" />
-														<h:outputText value="2 x 1" />
-
-														<h:outputText value="Local:" />
-														<h:outputText value="Planeta Bola" />
-
-														<h:outputText value="Data:" />
-														<h:outputText value="15/11/2012" />
-
-														<h:outputText value="Horário:" />
-														<h:outputText value="Das 15:00 às 17:00" />
-
-
-														<h:outputText value="Autores dos Gols:" />
-														<h:outputText
-															value="Japiim: Paulinho, Ronaldo / Alvorada: Kléber" />
-
-														<h:outputText value="Cartões Amarelos:" />
-														<h:outputText value="Japiim: 1 / Alvorada: 2" />
-
-														<h:outputText value="Cartões Vermelhos:" />
-														<h:outputText value="Japiim: 0 / Alvorada: 0" />
-
-
-													</h:panelGrid>
-
-													<h:panelGrid width="100%" style="text-align:center;">
-														<p:button onclick="partidaDialog.hide()" value="Ok" />
-													</h:panelGrid>
-
-												</p:fieldset>
-											</p:tab>
-											<p:tab title="Comentários">
-												<p:panel style="overflow: auto; height: 500px;">
-													<p:dataGrid var="mensagem"
-														value="#{muralMockBean.recadosMural}" columns="1">
-														<p:panel style="text-align:center">
-															<h:panelGrid columns="1" style="width:100%">
-																<h:outputText value="#{mensagem.nomeAutor} disse:"
-																	styleClass="css-label" />
-															</h:panelGrid>
-															<h:panelGrid columns="1" style="width:100%">
-																<h:outputText value="#{mensagem.mensagem}" />
-															</h:panelGrid>
-														</p:panel>
-													</p:dataGrid>
-												</p:panel>
-												<br />
-												<h:panelGrid style="text-align:center;width:600px;">
-													<p:button value="Enviar um recado"
-														onclick="comentarioPartidaModal.show(); return false;" />
-												</h:panelGrid>
-											</p:tab>
-											<p:tab title="Votação">
-												<h:panelGrid width="100%" cellpadding="5px">
-													<h:outputText
-														value="Escolha o merecedor do Troféu Perna-de-Pau"
-														styleClass="css-label" />
-													<p:separator />
-													<p:outputPanel id="pernaDePau">
-														<p:selectOneRadio id="opcaoPernaDePau" layout="custom">
-															<f:selectItem itemLabel="Paulinho" itemValue="0" />
-															<f:selectItem itemLabel="Rodrigo" itemValue="1" />
-															<f:selectItem itemLabel="Rubens" itemValue="2" />
-															<f:selectItem itemLabel="Chicão" itemValue="3" />
-														</p:selectOneRadio>
-
-														<h:panelGrid width="100%" columns="4">
-															<p:radioButton id="optPP1" for="opcaoPernaDePau" itemIndex="0" />
-															<h:outputLabel for="optPP1" value="Paulinho" />
-															<p:separator />
-															<h:outputText value="10%" styleClass="css-label" />
-
-
-															<p:radioButton id="optPP2" for="opcaoPernaDePau" itemIndex="1" />
-															<h:outputLabel for="optPP2" value="Rodrigo" />
-															<p:separator />
-															<h:outputText value="5%" styleClass="css-label" />
-
-															<p:radioButton id="optPP3" for="opcaoPernaDePau" itemIndex="2" />
-															<h:outputLabel for="optPP3" value="Rubens" />
-															<p:separator />
-															<h:outputText value="75%" styleClass="css-label" />
-
-															<p:radioButton id="optPP4" for="opcaoPernaDePau" itemIndex="3" />
-															<h:outputLabel for="optPP4" value="Chicão" />
-															<p:separator />
-															<h:outputText value="10%" styleClass="css-label" />
-
-														</h:panelGrid>
-													</p:outputPanel>
-												</h:panelGrid>
-
-												<br />
-
-												<h:panelGrid width="100%" cellpadding="5px">
-													<h:outputText
-														value="Vote no Craque do Jogo, o futuro Pelé"
-														styleClass="css-label" />
-													<p:separator />
-													<p:outputPanel id="customPanel">
-														<p:selectOneRadio id="opcaoCraqueDoJogo" layout="custom">
-															<f:selectItem itemLabel="Gildo" itemValue="0" />
-															<f:selectItem itemLabel="Messinho" itemValue="1" />
-															<f:selectItem itemLabel="Roger" itemValue="2" />
-															<f:selectItem itemLabel="Sidney" itemValue="3" />
-														</p:selectOneRadio>
-
-														<h:panelGrid width="100%" columns="4">
-															<p:radioButton id="optCJ1" for="opcaoCraqueDoJogo" itemIndex="0" />
-															<h:outputLabel for="optCJ1" value="Gildo" />
-															<p:separator />
-															<h:outputText value="20%" styleClass="css-label" />
-
-
-															<p:radioButton id="optCJ2" for="opcaoCraqueDoJogo" itemIndex="1" />
-															<h:outputLabel for="optCJ2" value="Messinho" />
-															<p:separator />
-															<h:outputText value="20%" styleClass="css-label" />
-
-															<p:radioButton id="optCJ3" for="opcaoCraqueDoJogo" itemIndex="2" />
-															<h:outputLabel for="optCJ3" value="Roger" />
-															<p:separator />
-															<h:outputText value="32%" styleClass="css-label" />
-
-															<p:radioButton id="optCJ4" for="opcaoCraqueDoJogo" itemIndex="3" />
-															<h:outputLabel for="optCJ4" value="Sidney" />
-															<p:separator />
-															<h:outputText value="28%" styleClass="css-label" />
-
-														</h:panelGrid>
-													</p:outputPanel>
-													<h:panelGrid width="100%" style="text-align:center;">
-														<p:button value="Votar"/>
-													</h:panelGrid>
-												</h:panelGrid>
-											</p:tab>
-
-										</p:tabView>
-									</p:dialog>
-
-								</p:tab>
-								
-							</p:tabView></td>
+										</p:panel>
+										
+										<p:panel header="Segundo Time">
+											
+											<h:panelGrid width="100%" columns="2">
+												<h:outputText value="Nome do Time" styleClass="css-label"/>
+												<p:inputText size="40"/>
+											</h:panelGrid>
+											<h:panelGroup>  
+											 <h:panelGrid columns="4" width="100%" cellpadding="4">  
+                								<p:panel id="jog1" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel>
+                        						<p:panel id="jog2" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel> 
+                        						<p:panel id="jog3" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel>
+                        						<p:panel id="jog4" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel>    
+                							 </h:panelGrid>
+                							 <h:panelGrid columns="4" width="100%" cellpadding="4">  
+                								<p:panel id="jog5" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel>
+                        						<p:panel id="jog6" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel> 
+                        						<p:panel id="jog7" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel>
+                        						<p:panel id="jog8" styleClass="slot" >  
+                    								<p:droppable scope="all" tolerance="fit" activeStyleClass="slotActive" datasource="availablePlayers" />  
+                        						</p:panel>    
+                							 </h:panelGrid>          							  	
+											</h:panelGroup>
+										</p:panel>
+										
+										
+									</h:panelGrid>
+									
+									<br/>
+									
+									<h:panelGrid width="100%">  
+       								 	<p:panel header="Jogadores Disponíveis">
+       								 		<h:panelGrid columns="3" cellspacing="5">
+												<h:outputText value="Palavra-chave:" styleClass="css-label" />
+												<p:inputText size="40" value="barcelona" />
+												<p:button value="Buscar Jogadores" icon="ui-icon-search" />
+											</h:panelGrid>
+       								 	  
+            								<p:dataGrid id="availablePlayers" value="#{jogadoresMockBean.players}" var="player" columns="8">  
+                								<h:panelGrid style="text-align:center;">  
+                   									<h:panelGrid id="combo" style="text-align:center;">
+                   										<p:graphicImage id="player" value="/images/jogadores/#{player.foto}" /> 
+                   										<h:outputText id="nomeJogador" value="#{player.nome}" styleClass="css-label"/> 
+                   									</h:panelGrid> 
+                    							 	<p:draggable for="combo" scope="all" revert="true" stack=".playerImage" />
+                    							 	 
+                								</h:panelGrid>  
+           									 </p:dataGrid>  
+        								</p:panel>  
+  
+        
+            						</h:panelGrid>  
+       
+  
+  
+    
+																	
+								</p:tab>							
+							</p:tabView>
+							
+							<p:panel>
+						
+							<h:panelGrid cellspacing="10" style="padding-left:20px;text-align:center;" columns="2" width="100%"> 
+            							<p:button value="Salvar" />
+            							<p:button value="Voltar" />            							
+            				</h:panelGrid>	
+            					
+							</p:panel>
+							</td>
 					</tr>
 				</table>
 			</h:form>

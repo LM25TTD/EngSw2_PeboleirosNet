@@ -74,7 +74,7 @@ public class MuralMockBean implements Serializable {
 	
 	
 	public void confirmarConvite(ActionEvent actionEvent){  
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso",  "Sua presença foi confirmada na partida!");  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sua presença foi confirmada na partida!",  null);  
         FacesContext.getCurrentInstance().addMessage(null, message);  
     } 
 	
