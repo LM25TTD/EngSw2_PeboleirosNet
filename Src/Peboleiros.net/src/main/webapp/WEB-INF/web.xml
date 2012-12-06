@@ -28,8 +28,8 @@
   </context-param>
   <context-param>  
     <param-name>primefaces.THEME</param-name>  
-    <!--  <param-value>le-frog</param-value> -->
-    <param-value>south-street</param-value>
+    <!--  <param-value>le-frog</param-value> --> 
+     <param-value>south-street</param-value>
   </context-param> 
   <welcome-file-list>
     <welcome-file>index.xhtml</welcome-file>
