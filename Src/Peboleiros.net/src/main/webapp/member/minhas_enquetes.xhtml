@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+
+<h:head>
+	<link
+		href="#{facesContext.externalContext.request.contextPath}/css/style.css"
+		rel="stylesheet" type="text/css" />
+	<title>Peboleiros.net</title>
+</h:head>
+<body>
+	<ui:composition template="/member/layout.xhtml">
+		<ui:define name="conteudo">
+			<h:form id="formHome">
+				<p:growl id="messages" life="4000" />
+				<table width="100%" cellpadding="0" cellspacing="0">
+					<tr valign="top">
+
+						<td width="800"><h:outputText value="Minhas Enquetes"
+								styleClass="css-titulo" /> <p:separator /> <p:tabView
+								orientation="left">
+
+								<p:tab title="Abertas">
+									<p:dataTable id="enquetes" var="enquete"
+										value="#{muralMockBean.enquetes}">
+										<p:column headerText="Título da Enquete">
+											<p:commandLink value="#{enquete}"
+												onclick="enqueteAbertaDialog.show(); return false;" />
+										</p:column>
+
+
+										<p:column style="text-align:center;">
+											<p:button value="Liberar Votação"
+												onclick="confirmaLiberacaoModal.show();return false;" />
+
+										</p:column>
+
+
+
+									</p:dataTable>
+
+									<p:dialog id="enqueteAbertaDialogId" header="Enquete"
+										width="670" appendToBody="true"
+										widgetVar="enqueteAbertaDialog" resizable="false"
+										showEffect="clip" modal="true">
+
+										<h:panelGrid width="100%" cellpadding="5px">
+											<p:inplace>
+												<p:inputText
+													value="Escolha o merecedor do Troféu Perna-de-Pau"
+													styleClass="css-label" size="80" />
+											</p:inplace>
+											<p:separator />
+											<p:outputPanel id="pernaDePau">
+												<p:selectOneRadio id="opcaoPernaDePau" layout="custom">
+													<f:selectItem itemLabel="Paulinho" itemValue="0" />
+													<f:selectItem itemLabel="Rodrigo" itemValue="1" />
+													<f:selectItem itemLabel="Rubens" itemValue="2" />
+													<f:selectItem itemLabel="Chicão" itemValue="3" />
+												</p:selectOneRadio>
+
+												<h:panelGrid width="100%" columns="3">
+													<p:radioButton id="optPP1" for="opcaoPernaDePau"
+														itemIndex="0" />
+													<h:outputLabel for="optPP1" value="Paulinho" />
+													<p:separator />
+
+
+													<p:radioButton id="optPP2" for="opcaoPernaDePau"
+														itemIndex="1" />
+													<h:outputLabel for="optPP2" value="Rodrigo" />
+													<p:separator />
+
+													<p:radioButton id="optPP3" for="opcaoPernaDePau"
+														itemIndex="2" />
+													<h:outputLabel for="optPP3" value="Rubens" />
+													<p:separator />
+
+													<p:radioButton id="optPP4" for="opcaoPernaDePau"
+														itemIndex="3" />
+													<h:outputLabel for="optPP4" value="Chicão" />
+													<p:separator />
+
+												</h:panelGrid>
+											</p:outputPanel>
+										</h:panelGrid>
+
+										<br />
+
+										<h:panelGrid width="100%" cellpadding="5px">
+											<p:inplace>
+												<p:inputText value="Vote no Craque do Jogo, o futuro Pelé"
+													styleClass="css-label" size="80" />
+											</p:inplace>
+
+											<p:separator />
+											<p:outputPanel id="customPanel">
+												<p:selectOneRadio id="opcaoCraqueDoJogo" layout="custom">
+													<f:selectItem itemLabel="Gildo" itemValue="0" />
+													<f:selectItem itemLabel="Messinho" itemValue="1" />
+													<f:selectItem itemLabel="Roger" itemValue="2" />
+													<f:selectItem itemLabel="Sidney" itemValue="3" />
+												</p:selectOneRadio>
+
+												<h:panelGrid width="100%" columns="3">
+													<p:radioButton id="optCJ1" for="opcaoCraqueDoJogo"
+														itemIndex="0" />
+													<h:outputLabel for="optCJ1" value="Gildo" />
+													<p:separator />
+
+
+
+													<p:radioButton id="optCJ2" for="opcaoCraqueDoJogo"
+														itemIndex="1" />
+													<h:outputLabel for="optCJ2" value="Messinho" />
+													<p:separator />
+
+													<p:radioButton id="optCJ3" for="opcaoCraqueDoJogo"
+														itemIndex="2" />
+													<h:outputLabel for="optCJ3" value="Roger" />
+													<p:separator />
+
+													<p:radioButton id="optCJ4" for="opcaoCraqueDoJogo"
+														itemIndex="3" />
+													<h:outputLabel for="optCJ4" value="Sidney" />
+													<p:separator />
+
+												</h:panelGrid>
+											</p:outputPanel>
+											<h:panelGrid width="100%" style="text-align:center;">
+												<p:button value="Salvar" />
+											</h:panelGrid>
+										</h:panelGrid>
+
+									</p:dialog>
+
+
+								</p:tab>
+
+
+
+
+								<p:tab title="Finalizadas">
+									<h:panelGrid columns="3" cellspacing="5">
+										<h:outputText value="Palavra-Chave:" styleClass="css-label" />
+										<p:inputText size="40" value="busca por local" />
+										<p:button value="Buscar" icon="ui-icon-search" />
+									</h:panelGrid>
+
+									<br />
+
+									<p:dataTable id="enquetesTable" var="enquete"
+										value="#{muralMockBean.enquetes}">
+										<p:column headerText="Titulo da Enquete">
+											<p:commandLink value="#{enquete}"
+												onclick="enqueteModal.show(); return false;" />
+
+										</p:column>
+										<p:column headerText="Total de Votos">
+											<p:commandLink value="14577"
+												onclick="enqueteModal.show(); return false;" />
+
+										</p:column>
+										<p:column >
+											<p:button value="Excluir"/>
+										</p:column>
+
+
+									</p:dataTable>
+
+
+
+								</p:tab>
+
+
+							</p:tabView></td>
+					</tr>
+					<p:confirmDialog id="confirmaLiberacao"
+						message="Liberar para votação?" header="Confirme" severity="info"
+						widgetVar="confirmaLiberacaoModal">
+
+						<p:commandButton id="confirm" value="Sim"
+							oncomplete="confirmaLiberacaoModal.hide()"
+							actionListener="#{muralMockBean.confirmarConvite}"
+							update="messages" />
+						<p:commandButton id="decline" value="Não"
+							onclick="confirmaLiberacaoModal.hide()" type="button" />
+
+					</p:confirmDialog>
+				</table>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+
+
+
+
+
+</body>
+</html>

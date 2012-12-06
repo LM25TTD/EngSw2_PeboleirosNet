@@ -180,56 +180,7 @@
 				</table>
 			</h:form>
 
-			<p:dialog id="emailAlterId" appendToBody="true"
-				header="Alteração de E-mail" widgetVar="emailAlter" modal="true">
-				<h:form id="formEmail">
-					<h:panelGrid width="100%" cellpadding="5px">
-						<p:inputText value="E-mail atual" size="40" />
-						<p:inputText value="Novo E-mail" size="40" />
-						<p:inputText value="Confirme o novo E-mail" size="40" />
-					</h:panelGrid>
-
-					<h:panelGrid width="100%"
-						style="text-align:center;padding-top:10px;">
-						<p:button value="Alterar"
-							onclick="emailAlterModal.hide(); return false;" />
-					</h:panelGrid>
-				</h:form>
-			</p:dialog>
-
-			<p:dialog id="senhaAlterId" appendToBody="true"
-				header="Alteração de Senha" widgetVar="senhaAlter" modal="true">
-				<h:form id="formSenha">
-					<h:panelGrid width="100%" columns="2">
-						<h:outputText value="Senha atual" />
-						<p:password size="20" />
-						<h:outputText value="Nova Senha" />
-						<p:password size="20" />
-						<h:outputText value="Confirmar Nova Senha" />
-						<p:password size="20" />
-					</h:panelGrid>
-					<h:panelGrid width="100%"
-						style="text-align:center;padding-top:10px;">
-						<p:button value="Alterar"
-							onclick="senhaAlter.hide(); return false;" />
-					</h:panelGrid>
-				</h:form>
-			</p:dialog>
-
-			<p:dialog id="comentarioPartidaPartidaId" appendToBody="true"
-				header="Escreva sua mensagem" widgetVar="comentarioPartidaModal"
-				modal="true" width="370">
-				<h:form id="formComentarioPartida">
-					<h:panelGrid width="100%" columns="2" cellpadding="5px">
-						<h:outputText value="Mensagem" styleClass="css-label" />
-						<p:inputTextarea rows="6" cols="40" />
-					</h:panelGrid>
-					<h:panelGrid width="100%"
-						style="text-align:center;padding-top:10px;">
-						<p:button value="Enviar" />
-					</h:panelGrid>
-				</h:form>
-			</p:dialog>
+			
 
 		</ui:define>
 	</ui:composition>

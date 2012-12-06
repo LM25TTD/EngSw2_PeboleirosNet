@@ -64,17 +64,23 @@ public class MuralMockBean implements Serializable {
 		partidas.add(new Partida("Barça x Chelsear", "3 x 3", "Planet Soccer"));
 		partidas.add(new Partida("OVNI x Capinzal", "2 x 0", "Planeta Bola"));
 		
+		enquetes.add("Observando a defesa e o atque, qual o melhor time do campeonato brasileiro de 2012?");
+		enquetes.add("Qual o melhor time do Peladão 2012?");
+		enquetes.add("Você concorda com a volta de Felipão para a seleção brasileira?");
+		
+		
 		
 	}
 	
 	private List<MensagemMural> recadosMural = new ArrayList<MensagemMural>(10);
 	private List<Partida> partidas = new ArrayList<Partida>(10);
+	private List<String> enquetes = new ArrayList<String>();
 	private CartesianChartModel timesResult; 
 	private Partida partidaSelecionada;
 	
 	
 	public void confirmarConvite(ActionEvent actionEvent){  
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sua presença foi confirmada na partida!",  null);  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Operação efetuada com sucesso!",  null);  
         FacesContext.getCurrentInstance().addMessage(null, message);  
     } 
 	
@@ -109,6 +115,15 @@ public class MuralMockBean implements Serializable {
 	public void setPartidas(List<Partida> partidas) {
 		this.partidas = partidas;
 	}
+
+	public List<String> getEnquetes() {
+		return enquetes;
+	}
+
+	public void setEnquetes(List<String> enquetes) {
+		this.enquetes = enquetes;
+	}
+	
 	
 	
 
